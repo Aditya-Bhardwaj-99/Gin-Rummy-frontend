@@ -17,7 +17,6 @@ function AppBar(props){
 
     const HandleLogout=()=>{
         props.UpdateState('id',undefined)
-        console.log(props)
     }
 
     return <div className='AppBar'>

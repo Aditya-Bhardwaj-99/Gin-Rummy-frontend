@@ -35,11 +35,11 @@ class Home extends React.Component {
         return <div className='Home' style={{ fontFamily: 'Pacifico' }}>
             <Logo />
             <div className='jusitfy-content-center mt-4' >
-                <Link to={'/play/'+(this.state.id?this.state.id:'')}>
+                {this.props.StateReducer.id?<Link to={'/play/'+(this.state.id?this.state.id:'')}>
                     <Button bg='dark' variant='dark' size='lg' className='border-white' style={this.ButtonStyle}>Play</Button>
-                </Link>
+                </Link>:undefined}
                 {this.props.StateReducer.id?undefined:<Link to={'/Login'}>
-                    <Button bg='dark' variant='dark' size='lg' className='border-white ml-3' style={this.ButtonStyle}>Login</Button>
+                    <Button bg='dark' variant='dark' size='lg' className='border-white' style={this.ButtonStyle}>Login</Button>
                 </Link>}
             </div>
         </div>

@@ -2,6 +2,7 @@ import React,{useEffect} from 'react'
 import getvw from '../../utils/getvw'
 import './Loading.css'
 import { TweenMax ,TweenLite, Sine } from 'gsap'
+import { Linear } from 'gsap/gsap-core'
 
 export default function Loading(props){
 
@@ -28,6 +29,7 @@ export default function Loading(props){
             }
         }
         TweenLite.set("#container", { rotationX: 70 });
+        TweenLite.to('#grid',6,{rotateZ:360,repeat:-1,ease:Linear.easeNone,yoyo:true})
         function createBox() {
             var box = document.createElement("div");
             TweenLite.set(box, { className: "box bg-dark", width: boxSize, height: boxSize, borderStyle:'solid',borderColor:'rgba(255,255,255,0.5)',borderWidth:'thin' });
@@ -35,8 +37,9 @@ export default function Loading(props){
             return box;
         }
     })
+    
 
-    return <div id="perspective" style={{marginLeft:getvw(400,1366)}}>
+    return <div id="perspective" style={{marginLeft:getvw(430),marginTop:'10%'}}>
         <div id="container">
         <div id="grid"></div>
         </div>
