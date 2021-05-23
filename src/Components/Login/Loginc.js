@@ -52,7 +52,7 @@ class Loginc extends React.Component{
             <Form onSubmit={this.HandleSubmit}>
             <h2 className="sr-only">Login Form</h2>
             <div className="illustration" style={this.innerDivStyle}><BsLock color='white' width='32' height='40'></BsLock></div>
-            <input style={this.formControlStyle} className="form-control" type="email" name="email" placeholder="Email"/>
+            <input style={this.formControlStyle} className="form-control" type="email" name="email" placeholder="Email ro Username"/>
             <input style={this.formControlStyle} className="form-control" type="password" name="password" placeholder="Password"/>
             <button style={this.buttonStyle} className="btn btn-primary btn-block" type="submit">Log In</button>
             </Form>

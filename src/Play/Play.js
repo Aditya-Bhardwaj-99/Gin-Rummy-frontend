@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button'
 import { Link } from 'react-router-dom'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import TestCards from '../Components/TestCards/TestCards'
 
 class Play extends React.Component {
     constructor(){
@@ -64,6 +65,7 @@ class Play extends React.Component {
                     <Button bg='dark' variant='dark' size='lg' className='border-white' style={this.ButtonStyle}>Home</Button>
                 </Link>
             </div>
+            <TestCards></TestCards>
         </div>
     }
 }
