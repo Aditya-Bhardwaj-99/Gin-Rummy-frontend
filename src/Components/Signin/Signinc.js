@@ -5,8 +5,18 @@ import ExportWithRedux from '../../utils/ExportWithRedux'
 import getvw from '../../utils/getvw'
 import {TweenMax} from 'gsap'
 import { Sine } from 'gsap/gsap-core'
+import Alert from 'react-bootstrap/Alert'
+
 
 class Signinc extends React.Component{
+
+    constructor(){
+        super();
+        this.state={
+            err:'',
+            alert:0
+        }
+    }
 
     innerDivStyle={
         textAlign:'center',
@@ -55,15 +65,55 @@ class Signinc extends React.Component{
         })
     }
 
-    HandleSubmit=(event)=>{
+    HandleSubmit=async (event)=>{
         event.preventDefault()
-        this.props.UpdateState('id','123456789')
-        let history = this.props.history
-        history.push('/');
+        let form = event.target
+        let username = form.username.value
+        let name = form.name.value
+        let email = form.email.value
+        let mobile = form.mobile.value
+        let password = form.password.value
+        let cpassword = form.confirmPassword.value
+        if(password===cpassword){
+            let res = await fetch(`http://localhost:8080/api/signin`,{
+                method: 'POST',
+            mode: 'cors',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username:username,
+                name:name,
+                email:email,
+                mobile:mobile,
+                password:password
+            })
+            })
+            res = await res.json().then(res=>res)
+            if(res.auth === true){
+                let ws = new WebSocket(`ws://localhost:8080/realtime`)
+                this.props.UpdateState('ws',ws)
+                this.props.UpdateState('id',res.userid)
+                this.props.UpdateState('user',res.user)
+                let history = this.props.history
+                history.push('/confirmmail');
+                this.setState({alert:0,err:''})
+            } else {
+                this.setState({alert:1,err:res.err})
+            }
+        }
+    }
+
+    alertStyle={
+        borderStyle:'solid',
+        borderRadius:getvw(15),
+        borderColor:'white',
+        borderWidth:getvw(0.5)
     }
 
     render(){
         return<div className='Signinc mb-3'>
+            {this.state.alert?<Alert style={this.alertStyle}>{this.state.err}</Alert>:null}
             <Form onSubmit={this.HandleSubmit}>
             <h2 className="sr-only">Register</h2>
             <div className="illustration" style={this.innerDivStyle}><GiCardAceSpades className='Ace' color='white' width='32' height='40'></GiCardAceSpades></div>

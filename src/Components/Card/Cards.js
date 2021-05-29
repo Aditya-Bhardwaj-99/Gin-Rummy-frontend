@@ -71,7 +71,7 @@ export default function Cards(props){
                     : face === 'H' ? <div><ImHeart style={cardSpecificSides}/></div> 
                     : face === 'C' ? <div><ImClubs style={cardSpecificSides}/></div> 
                     : face === 'D' ? <div><ImDiamonds style={cardSpecificSides}/></div> 
-                    : 'Nani Kure??'
+                    : ''
                 }
             </div>
             <div className='CardMid justify-content-center' style={cardMidStyle}>{
@@ -79,7 +79,7 @@ export default function Cards(props){
                 : face === 'H' ? <ImHeart style={cardSpecific}/> 
                 : face === 'C' ? <ImClubs style={cardSpecific}/> 
                 : face === 'D' ? <ImDiamonds style={cardSpecific}/> 
-                : 'Nani Kure??'
+                : ''
             }</div>
             <div className='CardBot text-left d-flex' style={cardBotStyle}>
                 <div style={cardTextStyle}>{number}</div>
@@ -88,7 +88,7 @@ export default function Cards(props){
                     : face === 'H' ? <div><ImHeart style={cardSpecificSides}/></div> 
                     : face === 'C' ? <div><ImClubs style={cardSpecificSides}/></div> 
                     : face === 'D' ? <div><ImDiamonds style={cardSpecificSides}/></div> 
-                    : 'Nani Kure??'
+                    : ''
                 }
             </div>
     </div>
